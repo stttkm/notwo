@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE_KEYS } from "@/constants";
+import { LOCAL_STORAGE_KEYS } from "@/shared/constants";
 import type { i18n } from "i18next";
 
 export function setAppLanguage(lang: string, i18n: i18n) {

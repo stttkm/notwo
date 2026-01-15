@@ -104,3 +104,5 @@ out/
 .tanstack/
 
 .env.local
+
+/src/routeTree.gen.ts

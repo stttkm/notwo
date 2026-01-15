@@ -1,11 +1,13 @@
+import "@/localization/i18n";
+
 import React, { useEffect } from "react";
-import { createRoot } from "react-dom/client";
-import { syncWithLocalTheme } from "./actions/theme";
-import { useTranslation } from "react-i18next";
-import { updateAppLanguage } from "./actions/language";
+
 import { RouterProvider } from "@tanstack/react-router";
-import { router } from "./utils/routes";
-import "./localization/i18n";
+import { createRoot } from "react-dom/client";
+import { router } from "@/shared/utils/routes";
+import { syncWithLocalTheme } from "@/features/settings/actions/theme";
+import { updateAppLanguage } from "@/features/settings/actions/language";
+import { useTranslation } from "react-i18next";
 
 export default function App() {
   const { i18n } = useTranslation();

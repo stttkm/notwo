@@ -1,6 +1,6 @@
-import { openExternalLink } from "@/actions/shell";
-import { cn } from "@/utils/tailwind";
 import { ComponentProps } from "react";
+import { cn } from "@/shared/utils/tailwind";
+import { openExternalLink } from "@/app/shell/actions/shell";
 
 export default function ExternalLink({
   children,
@@ -9,10 +9,7 @@ export default function ExternalLink({
   ...props
 }: ComponentProps<"a">) {
   function open() {
-    if (!href) {
-      return;
-    }
-
+    if (!href) return;
     openExternalLink(href);
   }
 

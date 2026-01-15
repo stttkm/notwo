@@ -1,6 +1,6 @@
-import { ThemeMode } from "@/types/theme-mode";
+import { LOCAL_STORAGE_KEYS } from "@/shared/constants";
+import { ThemeMode } from "@/shared/types/theme-mode";
 import { ipc } from "@/ipc/manager";
-import { LOCAL_STORAGE_KEYS } from "@/constants";
 
 export interface ThemePreferences {
   system: ThemeMode;

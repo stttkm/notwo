@@ -1,5 +1,5 @@
 import { ipcRenderer } from "electron";
-import { IPC_CHANNELS } from "./constants";
+import { IPC_CHANNELS } from "@/shared/constants";
 
 window.addEventListener("message", (event) => {
   if (event.data === IPC_CHANNELS.START_ORPC_SERVER) {

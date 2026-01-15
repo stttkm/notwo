@@ -1,13 +1,14 @@
-import { app, BrowserWindow } from "electron";
-import path from "path";
+import { BrowserWindow, app } from "electron";
 import {
-  installExtension,
   REACT_DEVELOPER_TOOLS,
+  installExtension,
 } from "electron-devtools-installer";
-import { ipcMain } from "electron/main";
+import { UpdateSourceType, updateElectronApp } from "update-electron-app";
+
+import { IPC_CHANNELS } from "@/shared/constants";
 import { ipcContext } from "@/ipc/context";
-import { IPC_CHANNELS } from "./constants";
-import { updateElectronApp, UpdateSourceType } from "update-electron-app";
+import { ipcMain } from "electron/main";
+import path from "path";
 
 const inDevelopment = process.env.NODE_ENV === "development";
 
@@ -77,14 +78,10 @@ app
 
 //osX only
 app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
+  if (process.platform !== "darwin") app.quit();
 });
 
 app.on("activate", () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
-  }
+  if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
 //osX only ends

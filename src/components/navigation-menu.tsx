@@ -27,6 +27,11 @@ export default function NavigationMenu() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <Link to="/settings">{t("titleSettingsPage")}</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
             <ExternalLink href="https://docs.luanroger.dev/electron-shadcn">
               {t("documentation")}
             </ExternalLink>

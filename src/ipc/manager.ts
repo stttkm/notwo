@@ -1,6 +1,6 @@
 import { ClientContext, createORPCClient } from "@orpc/client";
 
-import { IPC_CHANNELS } from "@/constants";
+import { IPC_CHANNELS } from "@/shared/constants";
 import { RPCLink } from "@orpc/client/message-port";
 import { RouterClient } from "@orpc/server";
 import { router } from "./router";

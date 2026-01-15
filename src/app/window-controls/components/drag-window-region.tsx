@@ -1,5 +1,5 @@
-import { getPlatform } from "@/actions/app";
-import { closeWindow, maximizeWindow, minimizeWindow } from "@/actions/window";
+import { getPlatform } from "@/shared/actions/app";
+import { closeWindow, maximizeWindow, minimizeWindow } from "@/app/window-controls/actions/window";
 import { type ReactNode, useEffect, useState } from "react";
 
 interface DragWindowRegionProps {
@@ -14,10 +14,7 @@ export default function DragWindowRegion({ title }: DragWindowRegionProps) {
 
     getPlatform()
       .then((value) => {
-        if (!active) {
-          return;
-        }
-
+        if (!active) return;
         setPlatform(value);
       })
       .catch((error) => {
