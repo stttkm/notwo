@@ -22,10 +22,25 @@ export default defineConfig([
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
   pluginReact.configs.flat["jsx-runtime"],
+  {
+    settings: {
+      react: { version: "detect" },
+    },
+  },
   reactHooks.configs.flat.recommended,
   eslintPluginPrettierRecommended,
   noBarrelFiles.flat,
   ...tseslint.configs.recommended,
+  // Code style rules - one component per file, max 125 lines
+  // Exclude shadcn/ui components (src/components/ui) as they are generated
+  {
+    files: ["src/**/*.{ts,tsx}"],
+    ignores: ["src/components/ui/**"],
+    rules: {
+      "react/no-multi-comp": ["error", { ignoreStateless: false }],
+      "max-lines": ["warn", { max: 125, skipBlankLines: true, skipComments: true }],
+    },
+  },
   // Bulletproof React boundary rules - enforce unidirectional imports
   {
     files: ["src/shared/**/*.{ts,tsx}"],
@@ -36,8 +51,7 @@ export default defineConfig([
           patterns: [
             {
               group: ["@/features/*", "@/app/*", "@/routes/*"],
-              message:
-                "shared/ cannot import from features/, app/, or routes/",
+              message: "shared/ cannot import from features/, app/, or routes/",
             },
           ],
         },

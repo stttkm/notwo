@@ -8,14 +8,18 @@ import { router } from "@/shared/utils/routes";
 import { syncWithLocalTheme } from "@/features/settings/actions/theme";
 import { updateAppLanguage } from "@/features/settings/actions/language";
 import { useTranslation } from "react-i18next";
+import { useSetAtom } from "jotai";
+import { initPlatformAtom } from "@/shared/atoms/platform-atom";
 
 export default function App() {
   const { i18n } = useTranslation();
+  const initPlatform = useSetAtom(initPlatformAtom);
 
   useEffect(() => {
     syncWithLocalTheme();
     updateAppLanguage(i18n);
-  }, [i18n]);
+    initPlatform();
+  }, [i18n, initPlatform]);
 
   return <RouterProvider router={router} />;
 }

@@ -1,6 +1,7 @@
 import { nativeTheme } from "electron";
 import { os } from "@orpc/server";
 import { setThemeModeInputSchema } from "./schemas";
+import { assertNever } from "@/shared/utils/assert-never";
 
 export const getCurrentThemeMode = os.handler(() => nativeTheme.themeSource);
 
@@ -23,7 +24,8 @@ export const setThemeMode = os
       case "system":
         nativeTheme.themeSource = "system";
         break;
-      // TODO assert never
+      default:
+        assertNever(mode);
     }
 
     return nativeTheme.themeSource;
