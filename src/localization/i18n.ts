@@ -32,7 +32,7 @@ i18n.use(initReactI18next).init({
     },
     "es-ES": {
       translation: {
-        appName: "Noto",
+        appName: "Notu",
         titleHomePage: "Página Inicial",
         titleSecondPage: "Segunda Página",
         titleSettingsPage: "Configuración",
