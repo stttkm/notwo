@@ -1,13 +1,13 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
-import eslintPluginPrettierRecommended from "eslint-config-prettier";
-import reactHooks from "eslint-plugin-react-hooks";
-import path from "node:path";
-import { includeIgnoreFile } from "@eslint/compat";
-import { fileURLToPath } from "node:url";
 import { defineConfig } from "eslint/config";
+import eslintPluginPrettierRecommended from "eslint-config-prettier";
+import { fileURLToPath } from "node:url";
+import globals from "globals";
+import { includeIgnoreFile } from "@eslint/compat";
+import path from "node:path";
+import pluginJs from "@eslint/js";
+import pluginReact from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
+import tseslint from "typescript-eslint";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

@@ -28,5 +28,6 @@
     "./forge.config.ts",
     "*.mts",
     "vite.renderer.config.mts"
-  ]
+  ],
+  "exclude": ["node_modules"]
 }
