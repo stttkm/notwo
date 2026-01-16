@@ -8,6 +8,7 @@ import {
   leftSidebarWidthAtom,
   rightSidebarWidthAtom,
 } from "../atoms/sidebar-atoms";
+import { useTrafficLightSync } from "../hooks/use-traffic-light-sync";
 
 interface ZenLayoutProps {
   children: ReactNode;
@@ -33,6 +34,8 @@ export function ZenLayout({
   const isRightOpen = useAtomValue(rightSidebarOpenAtom);
   const leftWidth = useAtomValue(leftSidebarWidthAtom);
   const rightWidth = useAtomValue(rightSidebarWidthAtom);
+
+  useTrafficLightSync();
 
   return (
     <div className="bg-zen-layer-0 flex h-screen w-screen overflow-hidden">

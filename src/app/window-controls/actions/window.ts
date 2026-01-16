@@ -9,3 +9,6 @@ export async function maximizeWindow() {
 export async function closeWindow() {
   await ipc.client.window.closeWindow();
 }
+export async function setTrafficLightVisibility(visible: boolean) {
+  await ipc.client.window.setTrafficLightVisibility({ visible });
+}

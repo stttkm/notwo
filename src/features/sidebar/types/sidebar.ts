@@ -21,7 +21,7 @@ export const MAX_SIDEBAR_WIDTH = 500;
 
 export const DEFAULT_SIDEBAR_STATE: SidebarState = {
   left: {
-    isOpen: false,
+    isOpen: true,
     width: DEFAULT_SIDEBAR_WIDTH,
   },
   right: {

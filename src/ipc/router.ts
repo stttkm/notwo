@@ -7,6 +7,7 @@ import {
   closeWindow,
   maximizeWindow,
   minimizeWindow,
+  setTrafficLightVisibility,
 } from "./window/handlers";
 import { currentPlatfom, appVersion } from "./app/handlers";
 import { openExternalLink } from "./shell/handlers";
@@ -21,6 +22,7 @@ export const router = {
     minimizeWindow,
     maximizeWindow,
     closeWindow,
+    setTrafficLightVisibility,
   },
   app: {
     currentPlatfom,
