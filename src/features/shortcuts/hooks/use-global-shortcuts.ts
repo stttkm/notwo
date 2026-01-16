@@ -1,55 +1,52 @@
-import { useEffect, useRef } from "react";
-
-import type { ShortcutId } from "../types/shortcut";
-import { matchesKeyCombination } from "../utils/shortcut-utils";
-import { shortcutsAtom } from "../atoms/shortcut-atoms";
+import { useHotkeys } from "react-hotkeys-hook";
 import { useAtomValue } from "jotai";
+
+import type { ShortcutId, KeyCombination } from "../types/shortcut";
+import { shortcutsAtom } from "../atoms/shortcut-atoms";
 
 type ShortcutHandlers = Partial<Record<ShortcutId, () => void>>;
 
-const THROTTLE_MS = 300;
+/**
+ * Converts a KeyCombination to react-hotkeys-hook format.
+ * e.g., { code: "KeyS", modifiers: ["meta"] } -> "meta+s"
+ */
+function toHotkeyString(combination: KeyCombination): string {
+  const key = combination.code
+    .replace(/^Key/, "")
+    .replace(/^Digit/, "")
+    .toLowerCase();
+
+  if (combination.modifiers.length === 0) return key;
+  return [...combination.modifiers, key].join("+");
+}
 
 /**
- * Hook to register global keyboard shortcut handlers
+ * Hook to register global keyboard shortcut handlers using react-hotkeys-hook.
  */
 export function useGlobalShortcuts(handlers: ShortcutHandlers): void {
   const shortcuts = useAtomValue(shortcutsAtom);
-  const lastTriggerRef = useRef(0);
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      const now = Date.now();
-      if (now - lastTriggerRef.current < THROTTLE_MS) return;
+  useHotkeys(
+    toHotkeyString(shortcuts["toggle-left-sidebar"]),
+    () => handlers["toggle-left-sidebar"]?.(),
+    { preventDefault: true },
+  );
 
-      const target = event.target;
-      const isInputField =
-        target instanceof HTMLInputElement ||
-        target instanceof HTMLTextAreaElement ||
-        (target instanceof HTMLElement && target.isContentEditable);
+  useHotkeys(
+    toHotkeyString(shortcuts["toggle-right-sidebar"]),
+    () => handlers["toggle-right-sidebar"]?.(),
+    { preventDefault: true },
+  );
 
-      // Allow command palette even in inputs
-      if (isInputField) {
-        const cmdPalette = shortcuts["open-command-palette"];
-        if (cmdPalette && matchesKeyCombination(event, cmdPalette)) {
-          event.preventDefault();
-          lastTriggerRef.current = now;
-          handlers["open-command-palette"]?.();
-        }
-        return;
-      }
+  useHotkeys(
+    toHotkeyString(shortcuts["open-command-palette"]),
+    () => handlers["open-command-palette"]?.(),
+    { preventDefault: true, enableOnFormTags: true },
+  );
 
-      for (const [id, combination] of Object.entries(shortcuts)) {
-        const handler = handlers[id as ShortcutId];
-        if (handler && matchesKeyCombination(event, combination)) {
-          event.preventDefault();
-          lastTriggerRef.current = now;
-          handler();
-          return;
-        }
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [shortcuts, handlers]);
+  useHotkeys(
+    toHotkeyString(shortcuts["open-settings"]),
+    () => handlers["open-settings"]?.(),
+    { preventDefault: true },
+  );
 }
