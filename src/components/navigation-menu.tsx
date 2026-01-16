@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import {
   NavigationMenu as NavigationMenuBase,
   NavigationMenuItem,
@@ -6,8 +5,11 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { useTranslation } from "react-i18next";
+
 import ExternalLink from "./external-link";
+import { Link } from "@tanstack/react-router";
+import { ROUTES } from "@/shared/constants/routes";
+import { useTranslation } from "react-i18next";
 
 export default function NavigationMenu() {
   const { t } = useTranslation();
@@ -17,17 +19,17 @@ export default function NavigationMenu() {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to="/">{t("titleHomePage")}</Link>
+            <Link to={ROUTES.HOME}>{t("titleHomePage")}</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to="/second">{t("titleSecondPage")}</Link>
+            <Link to={ROUTES.SECOND}>{t("titleSecondPage")}</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to="/settings">{t("titleSettingsPage")}</Link>
+            <Link to={ROUTES.SETTINGS}>{t("titleSettingsPage")}</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>

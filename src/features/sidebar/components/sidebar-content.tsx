@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { LeftSidebarHeader } from "./left-sidebar-header";
 
 interface SidebarContentProps {
   children?: ReactNode;
@@ -6,16 +7,18 @@ interface SidebarContentProps {
 }
 
 export function SidebarContent({ children, position }: SidebarContentProps) {
+  const isLeft = position === "left";
+
   return (
-    <div className="flex h-full flex-col p-4">
-      <div className="text-sidebar-foreground/70 mb-4 text-sm font-medium tracking-wide uppercase">
-        {position === "left" ? "Left Sidebar" : "Right Sidebar"}
+    <div className="flex h-full flex-col">
+      {isLeft && <LeftSidebarHeader />}
+      <div className={isLeft ? "flex-1 p-4 pt-0" : "flex-1 p-4"}>
+        {children ?? (
+          <div className="text-sidebar-foreground/50 text-sm">
+            Placeholder content for the {position} sidebar.
+          </div>
+        )}
       </div>
-      {children ?? (
-        <div className="text-sidebar-foreground/50 text-sm">
-          Placeholder content for the {position} sidebar.
-        </div>
-      )}
     </div>
   );
 }

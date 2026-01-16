@@ -7,12 +7,13 @@ import {
   Sun,
 } from "lucide-react";
 import { useAtom, useSetAtom } from "jotai";
-import { useMemo } from "react";
 
 import type { Command } from "../types/command";
+import { ROUTES } from "@/shared/constants/routes";
 import { shortcutsAtom } from "@/features/shortcuts/atoms/shortcut-atoms";
 import { toggleSidebarAtom } from "@/features/sidebar/atoms/sidebar-atoms";
 import { toggleTheme } from "@/features/settings/actions/theme";
+import { useMemo } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
@@ -29,14 +30,14 @@ export function useCommands() {
         label: t("titleHomePage"),
         category: "Navigation",
         icon: <Home className="mr-2 h-4 w-4" />,
-        action: () => navigate({ to: "/" }),
+        action: () => navigate({ to: ROUTES.HOME }),
       },
       {
         id: "navigate-second",
         label: t("titleSecondPage"),
         category: "Navigation",
         icon: <FileText className="mr-2 h-4 w-4" />,
-        action: () => navigate({ to: "/second" }),
+        action: () => navigate({ to: ROUTES.SECOND }),
       },
       {
         id: "navigate-settings",
@@ -44,7 +45,7 @@ export function useCommands() {
         category: "Navigation",
         icon: <Settings className="mr-2 h-4 w-4" />,
         shortcut: shortcuts["open-settings"],
-        action: () => navigate({ to: "/settings" }),
+        action: () => navigate({ to: ROUTES.SETTINGS }),
       },
       {
         id: "toggle-left-sidebar",
