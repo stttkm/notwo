@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   Group,
   Panel,
@@ -6,7 +5,6 @@ import {
   type GroupProps,
   type PanelProps,
   type SeparatorProps,
-  type ImperativePanelHandle,
 } from "react-resizable-panels";
 
 import { cn } from "@/shared/utils/tailwind";
@@ -24,10 +22,9 @@ function ResizablePanelGroup({ className, ...props }: GroupProps) {
   );
 }
 
-const ResizablePanel = React.forwardRef<ImperativePanelHandle, PanelProps>(
-  (props, ref) => <Panel ref={ref} data-slot="resizable-panel" {...props} />,
-);
-ResizablePanel.displayName = "ResizablePanel";
+function ResizablePanel({ ...props }: PanelProps) {
+  return <Panel data-slot="resizable-panel" {...props} />;
+}
 
 function ResizableHandle({
   withHandle,

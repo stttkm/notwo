@@ -1,9 +1,12 @@
-import { useTranslation } from "react-i18next";
+import { AccentColorSetting } from "@/features/settings/components/accent-color-setting";
+import { BaseColorSetting } from "@/features/settings/components/base-color-setting";
+import { LanguageSetting } from "@/features/settings/components/language-setting";
 import NavigationMenu from "@/components/navigation-menu";
-import ThemeToggle from "@/features/settings/components/theme-toggle";
-import LanguageToggle from "@/features/settings/components/language-toggle";
-import { ShortcutSettings } from "@/features/shortcuts/components/shortcut-settings";
 import { Separator } from "@/components/ui/separator";
+import { ShortcutSettings } from "@/features/shortcuts/components/shortcut-settings";
+import { SidebarColorSetting } from "@/features/settings/components/sidebar-color-setting";
+import { ThemeSetting } from "@/features/settings/components/theme-setting";
+import { useTranslation } from "react-i18next";
 
 export default function SettingsPage() {
   const { t } = useTranslation();
@@ -18,14 +21,11 @@ export default function SettingsPage() {
           <div className="space-y-4">
             <h3 className="text-lg font-medium">{t("appearance")}</h3>
             <div className="space-y-3">
-              <div className="flex items-center justify-between gap-8 rounded-lg border p-3">
-                <span className="text-sm font-medium">{t("theme")}</span>
-                <ThemeToggle />
-              </div>
-              <div className="flex items-center justify-between gap-8 rounded-lg border p-3">
-                <span className="text-sm font-medium">{t("language")}</span>
-                <LanguageToggle />
-              </div>
+              <ThemeSetting />
+              <LanguageSetting />
+              <AccentColorSetting />
+              <BaseColorSetting />
+              <SidebarColorSetting />
             </div>
           </div>
 

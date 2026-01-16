@@ -7,6 +7,7 @@ import { createRoot } from "react-dom/client";
 import { router } from "@/shared/utils/routes";
 import { syncWithLocalTheme } from "@/features/settings/actions/theme";
 import { updateAppLanguage } from "@/features/settings/actions/language";
+import { useThemeColors } from "@/features/settings/hooks/use-theme-colors";
 import { useTranslation } from "react-i18next";
 import { useSetAtom } from "jotai";
 import { initPlatformAtom } from "@/shared/atoms/platform-atom";
@@ -14,6 +15,8 @@ import { initPlatformAtom } from "@/shared/atoms/platform-atom";
 export default function App() {
   const { i18n } = useTranslation();
   const initPlatform = useSetAtom(initPlatformAtom);
+
+  useThemeColors();
 
   useEffect(() => {
     syncWithLocalTheme();
